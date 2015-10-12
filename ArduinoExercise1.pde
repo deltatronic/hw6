@@ -12,11 +12,11 @@ void loop() {
   int lightLevel = analogRead(A0);
 
   if (ledIsOn) {
-    if (lightLevel > 10) {
+    if (lightLevel > 9) {
       ledIsOn = false;
     }
   } else {
-    if (lightLevel < 6) {
+    if (lightLevel < 7) {
       ledIsOn = true;
     }
   }
