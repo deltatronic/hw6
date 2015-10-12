@@ -9,6 +9,7 @@ final float GRID_PADDING = 50;
 void setup() {
   size(500, 500);
   mouseX = mouseY = 250;
+  colorMode(RGB,width,height,height);
 }
 
 float gridToCoordinates(int input) {
@@ -19,7 +20,7 @@ void draw() {
   background(0);
 
   noStroke();
-  fill(255);
+  fill(mouseY,width,height);
   for (int i = 0; i < GRID_SIZE; ++i) {
     for (int j = 0; j < GRID_SIZE; ++j) {
       float distance = sqrt(pow(mouseX-gridToCoordinates(i), 2) + pow(mouseY-gridToCoordinates(j), 2));
