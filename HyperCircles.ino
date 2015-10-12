@@ -1,4 +1,4 @@
-final int GRID_SIZE = 10;
+final int GRID_SIZE = 35;
 final float GRID_PADDING = 50;
 final float FRACTION_PER_FRAME = .25;
 final int MAX_HISTORY_POINTS = 40;
@@ -8,15 +8,14 @@ int oldX, oldY;
 int newX, newY;
 
 float fraction = 0;
-
+float hue = 0; 
 ArrayList<PVector> historyPoints;
 
 void setup() {
   size(500, 500);
-
+  mouseX = mouseY = 250; 
   newX = floor(random(GRID_SIZE));
   newY = floor(random(GRID_SIZE));
-
   historyPoints = new ArrayList<PVector>();
   setNewDestination();
 }
@@ -42,7 +41,7 @@ float gridToCoordinates(float input) {
 }
 
 void drawHistory() {
-  fill(255);
+  fill(hue,50,80);
   noStroke();
   for (int i = 0; i < historyPoints.size (); i++) {
     PVector hp = historyPoints.get(i);
@@ -52,7 +51,7 @@ void drawHistory() {
 }  
 
 void drawGrid() {
-  fill(255);
+  fill(100);
   noStroke();
   for (int i = 0; i < GRID_SIZE; i++) {
     for (int j = 0; j < GRID_SIZE; j++) {
@@ -62,7 +61,7 @@ void drawGrid() {
 }
 
 void drawLine() {
-  stroke(255);
+  stroke(100);
   strokeWeight(4);
   float cOldX = gridToCoordinates(oldX);
   float cOldY = gridToCoordinates(oldY);
@@ -74,11 +73,17 @@ void drawLine() {
        cOldX + (cNewX - cOldX)*min(fraction+FRACTION_PER_FRAME, 1), 
        cOldY + (cNewY - cOldY)*min(fraction+FRACTION_PER_FRAME, 1));
 }
-
+void mouseMoved() { 
+  hue = hue + 1; 
+  if ( hue > 255) 
+  hue = 0; 
+}
+  
 void draw() {
   background(0);
   if (fraction >= 1) {
     setNewDestination();
+    fill(mouseY, 0, 50); 
   }
 
   drawHistory();
