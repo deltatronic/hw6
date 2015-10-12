@@ -20,7 +20,7 @@ void draw() {
 
   noStroke();
   colorMode(HSB, 100);
-  fill (mouseX / 6, mouseY, 100);
+  fill (mouseX / 4, mouseY, 100);
   for (int i = 0; i < GRID_SIZE; ++i) {
     for (int j = 0; j < GRID_SIZE; ++j) {
       float distance = sqrt(pow(mouseX - gridToCoordinates(i), 2) + pow(mouseY - gridToCoordinates(j), 2));
